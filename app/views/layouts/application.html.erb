@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quiz</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <nav class="navbar navbar-info">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="javascript:void(0)">Quiz</a>
+      </div>
+      <div class="navbar-collapse collapse navbar-inverse-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="javascript:void(0)">Active</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Account
+              <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <% if user_signed_in? %>
+                <li><%= link_to "Account Update",edit_user_registration_path %></li>
+                <li><%= link_to "Sign Out",destroy_user_session_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to "Sign In",new_user_session_path %></li>
+                <li><%= link_to "Sign Up",new_user_registration_path %></li>
+              <% end -%>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="col-md-4 col-md-offset-4">
+      <br><%= flash_messages %>
+    </div>
+  </div>
+  <%= yield %>
+</body>
+</html>
