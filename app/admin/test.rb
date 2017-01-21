@@ -12,6 +12,13 @@ permit_params :name
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-
+index do
+  id_column
+  column :name
+  column :question do |test|
+    link_to "Add Question",new_admin_question_path(:question => {test_id: test.id})
+  end
+  actions
+end
 
 end
