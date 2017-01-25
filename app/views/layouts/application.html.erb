@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Quiz</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
+  <head>
+    <title>Quiz</title>
+      <!-- Material Design fonts -->
+      <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+      <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Sniglet" />
+      <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Sans&subset=latin,latin-ext"/> 
+      <!-- Bootstrap -->
+      <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+      <!-- Bootstrap Material Design -->
+      <link rel="stylesheet" type="text/css" href="dist/css/bootstrap-material-design.css">
+      <link rel="stylesheet" type="text/css" href="dist/css/ripples.min.css">
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+      <%= csrf_meta_tags %>
+  </head>
 <body>
   <nav class="navbar navbar-info">
     <div class="container-fluid">

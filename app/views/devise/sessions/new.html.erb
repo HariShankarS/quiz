@@ -1,33 +1,32 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      <fieldset>
-        <legend class="text-center"><h2>Log In</h2></legend>
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="form-group">
-            <%= f.label :email %><br />
-            <%= f.email_field :email, autofocus: true, :class => "form-control" %>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :password %><br />
-            <%= f.password_field :password, autocomplete: "off", :class => "form-control" %>
-          </div>
-
-          <% if devise_mapping.rememberable? -%>
+      <div class="well well-md">
+        <fieldset>
+          <legend class="text-center"> Log In </legend>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="form-group">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, :class => "form-control" %>
             </div>
-          <% end -%>
-
-          <div class="actions">
-            <%= f.submit "Log in", :class => "btn btn-raised btn-info" %>
-          </div>
-        <% end %>
-
-        <%= render "devise/shared/links" %>
-      </fieldset>
+            <div class="form-group">
+              <%= f.label :password %><br />
+              <%= f.password_field :password, autocomplete: "off", :class => "form-control" %>
+            </div>
+            <% if devise_mapping.rememberable? -%>
+              <div class="togglebutton">
+                <%= f.label :remember_me do %>
+                  <%= f.check_box :remember_me %>remember me
+                <% end %>
+              </div>
+            <% end -%>
+            <div class="actions">
+              <%= f.submit "Log in", :class => "btn btn-raised btn-info" %>
+            </div>
+          <% end %>
+          <%= render "devise/shared/links" %>
+        </fieldset>
+      </div>
     </div>
   </div>
 </div>

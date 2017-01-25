@@ -13,7 +13,12 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-material-design/";
+@import "ripples";
 
 .navbar {
   margin-bottom: 0px !important;
+}
+.col-md-12 {
+  padding-top: 20px;
 }
