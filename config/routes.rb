@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'home/index'
+  get 'attempts/index'
+  get 'attempts/evaluation/:evaluation_id' => 'attempts#evaluation', as: 'evaluation_attempt'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#index'
+  root 'attempts#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

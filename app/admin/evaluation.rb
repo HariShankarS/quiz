@@ -1,9 +1,10 @@
-ActiveAdmin.register Test do
+ActiveAdmin.register Evaluation do
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :name, :time_independent, :time_per_question, :question_time_setting
+permit_params :name, :time_per_question, :time_independent, :question_time_setting
+
 #
 # or
 #
@@ -15,8 +16,8 @@ permit_params :name, :time_independent, :time_per_question, :question_time_setti
 index do
   id_column
   column :name
-  column :question do |test|
-    link_to "Add Question",new_admin_question_path(:question => {test_id: test.id})
+  column :question do |evaluation|
+    link_to "Add Question",new_admin_question_path(:question => {evaluation_id: evaluation.id})
   end
   actions
 end

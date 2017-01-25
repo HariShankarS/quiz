@@ -3,7 +3,7 @@ ActiveAdmin.register Question do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :question, :answer, :test_id, :time
+permit_params :question, :answer, :evaluation_id, :time, :start_time, :end_time
 #
 # or
 #
@@ -29,7 +29,7 @@ show do |ad|
    attributes_table do
      row :question
      row :answer
-     row :test_id
+     row :evaluation_id
    end
 end
 
@@ -38,10 +38,10 @@ end
 form do |f|
   f.semantic_errors
   f.inputs do
-    f.input :test_id, :as => :select, :collection => Test.all.map{|t| ["#{t.name}", t.id]}
+    f.input :evaluation_id, :as => :select, :collection => Evaluation.all.map{|t| ["#{t.name}", t.id]}
     f.input :question
-    f.input :answer, :as => :select, :collection => Option.all.map{|o| ["#{o.option}", o.option]}
-    f.input :time, :input_html => { :value => f.object.persisted? ? f.object.time : Question.set_time(params[:question].try(:[], :test_id)), :disabled => Question.disable_time(params[:question].try(:[], :test_id))}
+    f.input :answer, :as => :select, :collection => Option.all.map{|o| ["#{o.option}", o.id]}
+    f.input :time, :input_html => { :value => f.object.persisted? ? f.object.time : Question.set_time(params[:question].try(:[], :evaluation_id)), :disabled => Question.disable_time(params[:question].try(:[], :evaluation_id))}
   end
   f.actions
 end
@@ -50,7 +50,7 @@ index do
   id_column
   column :question
   column :answer
-  column :test_id
+  column :evaluation_id
   column :options do |question|
     question.options.collect(&:option).join(", ")
   end

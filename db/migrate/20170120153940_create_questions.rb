@@ -3,7 +3,7 @@ class CreateQuestions < ActiveRecord::Migration
     create_table :questions do |t|
       t.string :question
       t.integer :answer
-      t.integer :test_id
+      t.integer :evaluation_id
       t.integer :time
       t.datetime :start_time
       t.datetime :end_time
