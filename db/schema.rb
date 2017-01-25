@@ -55,8 +55,11 @@ ActiveRecord::Schema.define(version: 20170121074552) do
 
   create_table "questions", force: :cascade do |t|
     t.string   "question"
-    t.string   "answer"
+    t.integer  "answer"
     t.integer  "test_id"
+    t.integer  "time"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -69,8 +72,11 @@ ActiveRecord::Schema.define(version: 20170121074552) do
 
   create_table "tests", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "time_per_question"
+    t.boolean  "time_independent"
+    t.boolean  "question_time_setting"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "users", force: :cascade do |t|
