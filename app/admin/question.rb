@@ -49,7 +49,7 @@ end
 index do
   id_column
   column :question
-  column :answer
+  column :answer_id
   column :evaluation_id
   column :options do |question|
     question.options.collect(&:option).join(", ")
