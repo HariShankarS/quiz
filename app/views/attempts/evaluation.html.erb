@@ -3,8 +3,24 @@
     <div class="col-md-6 col-md-offset-3">
       <div class="well well-md">
         <fieldset>
-          <legend class="text-center"> Evaluation <%= params[:evaluation_id] %> </legend>
-            
+          <legend class="text-center"><h2> Evaluation <%= params[:evaluation_id] %></h2></legend>
+            <h4>
+              Q<%= @question.id %>) <%= @question.question.capitalize %>
+            </h4>
+            <%= form_for(@user_answer, url: evaluation_user_answer_path(attempt_id: @attempt.id, question_id: @question.id)) do |f| %>
+              <div class="form-group label-floating" >
+                <%= f.label :answer_id, class: "control-label" %>
+                <% @question.options.each do |option| %>
+                  <div class="radio radio-primary">
+                    <label>
+                      <%= f.radio_button("answer_id","#{option.id}")%>
+                      <%= option.option.capitalize %>
+                    </label>
+                  </div>
+                <% end -%>
+              </div>
+              <%= f.submit "answer", class: "btn btn-raised btn-info" %>
+          <% end -%>
         </fieldset>
       </div>
     </div>

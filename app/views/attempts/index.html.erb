@@ -6,7 +6,9 @@
         <%= evaluation.name.upcase %>
       </div>
       <div style="text-align: center;" class="col-md-6">
-        <%= link_to "Start the evaluation", evaluation_attempt_path(evaluation_id: evaluation.id), class: "btn btn-raised btn-info" %>
+        <% unless current_user.attempted_evaluations.include?(evaluation.id) %>
+          <%= link_to "Start the evaluation" , evaluation_attempt_path(evaluation_id: evaluation.id), class: "btn btn-info", data: { no_turbolink: true } %>
+        <% end -%>
       </div>
     </div>
   <% end -%>

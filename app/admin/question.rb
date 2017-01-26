@@ -3,7 +3,7 @@ ActiveAdmin.register Question do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :question, :answer, :evaluation_id, :time, :start_time, :end_time
+permit_params :question, :answer_id, :evaluation_id, :time, :start_time, :end_time
 #
 # or
 #
@@ -28,7 +28,7 @@ end
 show do |ad|
    attributes_table do
      row :question
-     row :answer
+     row :answer_id
      row :evaluation_id
    end
 end
@@ -40,7 +40,7 @@ form do |f|
   f.inputs do
     f.input :evaluation_id, :as => :select, :collection => Evaluation.all.map{|t| ["#{t.name}", t.id]}
     f.input :question
-    f.input :answer, :as => :select, :collection => Option.all.map{|o| ["#{o.option}", o.id]}
+    f.input :answer_id, :as => :select, :collection => Option.all.map{|o| ["#{o.option}", o.id]}
     f.input :time, :input_html => { :value => f.object.persisted? ? f.object.time : Question.set_time(params[:question].try(:[], :evaluation_id)), :disabled => Question.disable_time(params[:question].try(:[], :evaluation_id))}
   end
   f.actions

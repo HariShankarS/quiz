@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :email, :inclusion => { :in => RegisteredUser.all.collect(&:email), :message => " is not registered with us" }
-  has_many :attempts
-  has_many :evaluations, :through => :attempts
+  has_many :attempts, dependent: :destroy
+  has_many :evaluations, :through => :attempts, dependent: :destroy
+
+  def attempted_evaluations
+  	attempts.pluck(:evaluation_id)
+  end
 end

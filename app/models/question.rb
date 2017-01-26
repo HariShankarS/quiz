@@ -1,6 +1,8 @@
 class Question < ActiveRecord::Base
   belongs_to :evaluation
   has_many :options, dependent: :destroy 
+  has_many :user_answers # for multiple users
+  
   validates_presence_of :question, :evaluation_id
   before_validation :copy_time_from_evaluation
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170125104608) do
+ActiveRecord::Schema.define(version: 20170126100129) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -49,8 +49,9 @@ ActiveRecord::Schema.define(version: 20170125104608) do
   create_table "attempts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "evaluation_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.boolean  "unfinished",    default: true
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "evaluations", force: :cascade do |t|
@@ -71,7 +72,7 @@ ActiveRecord::Schema.define(version: 20170125104608) do
 
   create_table "questions", force: :cascade do |t|
     t.string   "question"
-    t.integer  "answer"
+    t.integer  "answer_id"
     t.integer  "evaluation_id"
     t.integer  "time"
     t.datetime "start_time"
@@ -84,6 +85,14 @@ ActiveRecord::Schema.define(version: 20170125104608) do
     t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_answers", force: :cascade do |t|
+    t.integer  "question_id"
+    t.integer  "answer_id"
+    t.integer  "attempt_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|
