@@ -8,6 +8,6 @@ class User < ActiveRecord::Base
   has_many :evaluations, :through => :attempts, dependent: :destroy
 
   def attempted_evaluations
-  	attempts.pluck(:evaluation_id)
+  	attempts.pluck(:evaluation_id, :unfinished).map do |arr| Hash.send(:[], *arr) end.reduce({}, :merge)
   end
 end

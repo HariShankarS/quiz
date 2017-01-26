@@ -11,6 +11,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'jquery-ui-rails', '~> 5.0.5'
+gem 'jquery-turbolinks'
 group :development, :test do
   gem 'byebug'
 end

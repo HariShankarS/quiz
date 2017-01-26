@@ -6,9 +6,13 @@
         <%= evaluation.name.upcase %>
       </div>
       <div style="text-align: center;" class="col-md-6">
-        <% unless current_user.attempted_evaluations.include?(evaluation.id) %>
-          <%= link_to "Start the evaluation" , evaluation_attempt_path(evaluation_id: evaluation.id), class: "btn btn-info", data: { no_turbolink: true } %>
-        <% end -%>
+        <% if @user_attempted_evaluations[evaluation.id].nil? %>
+          <%= link_to "Start" , evaluation_attempt_path(evaluation_id: evaluation.id), class: "btn btn-success btn-raised", data: { no_turbolink: true } %>
+        <% else %>
+          <% if @user_attempted_evaluations[evaluation.id] == true %>
+            <%= link_to "Continue" , evaluation_attempt_path(evaluation_id: evaluation.id), class: "btn btn-info btn-raised", data: { no_turbolink: true } %>
+          <% end %>
+        <% end %>
       </div>
     </div>
   <% end -%>

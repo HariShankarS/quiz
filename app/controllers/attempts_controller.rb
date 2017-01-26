@@ -2,6 +2,7 @@ class AttemptsController < ApplicationController
   before_action :authenticate_user!
   def index
     @evaluations = Evaluation.all
+    @user_attempted_evaluations = current_user.attempted_evaluations
   end
 
   def evaluation
