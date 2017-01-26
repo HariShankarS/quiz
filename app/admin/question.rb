@@ -40,7 +40,7 @@ form do |f|
   f.inputs do
     f.input :evaluation_id, :as => :select, :collection => Evaluation.all.map{|t| ["#{t.name}", t.id]}
     f.input :question
-    f.input :answer_id, :as => :select, :collection => Option.all.map{|o| ["#{o.option}", o.id]}
+    f.input :answer_id, :as => :select, :collection => question.options.all.map{|o| ["#{o.option}", o.id]}
     f.input :time, :input_html => { :value => f.object.persisted? ? f.object.time : Question.set_time(params[:question].try(:[], :evaluation_id)), :disabled => Question.disable_time(params[:question].try(:[], :evaluation_id))}
   end
   f.actions
