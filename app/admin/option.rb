@@ -3,7 +3,7 @@ ActiveAdmin.register Option do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :option, :question_id
+permit_params :value, :question_id, :valid_answer
 #
 # or
 #
@@ -22,7 +22,8 @@ end
 form do |f|
   f.semantic_errors # shows errors on :base
   f.inputs  do        # builds an input field for every attribute
-    f.input :option
+    f.input :value, :input_html => { :style => 'width:15%'}
+    f.input :valid_answer, :input_html => { :style => 'width:15%'}
     f.input :question_id, :as => :select, :collection => Question.all.map{|u| ["#{u.question}", u.id]}
   end
   f.actions  
