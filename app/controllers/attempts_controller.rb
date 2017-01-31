@@ -21,6 +21,17 @@ class AttemptsController < ApplicationController
     end
   end
 
+  def result
+    @attempt = Attempt.includes(:user_answers, evaluation: :questions).find_by_id(params[:attempt_id])
+    @evaluation = @attempt.evaluation
+    # @questions = @evaluation.questions
+    @user_answers = @attempt.user_answers
+    # @wrong_answers = @user_answers.joins("INNER JOIN options as attempted_option on attempted_option.id = user_answers.answer_id").where(attempted_option: { valid_answer: false })
+    # @right_answers = @user_answers.joins("INNER JOIN options as attempted_option on attempted_option.id = user_answers.answer_id").where(attempted_option: { valid_answer: true })
+
+    @list = @user_answers.joins("INNER JOIN options as attempted_option on attempted_option.id = user_answers.answer_id").select("user_answers.*, attempted_option.value as at_value")
+  end
+
   def user_answer
     @attempt = Attempt.where(id: params[:attempt_id], unfinished: true).first
     @user_answer = @attempt.user_answers.new(user_answer_params)
@@ -31,7 +42,7 @@ class AttemptsController < ApplicationController
       redirect_to evaluation_attempt_path(evaluation_id: @attempt.evaluation_id)
     else
       flash[:success] = "Evaluation completed"
-      redirect_to attempts_index_path
+      redirect_to attempt_result_path(attempt_id: @attempt.id)
     end
   end
 

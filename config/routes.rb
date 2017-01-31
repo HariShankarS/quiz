@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'attempts/index'
   post 'attempts/:attempt_id/user_answer/:question_id' => "attempts#user_answer", as: 'evaluation_user_answer'
   get 'attempts/evaluation/:evaluation_id' => 'attempts#evaluation', as: 'evaluation_attempt'
+  get 'attempts/result/:attempt_id' => 'attempts#result', as: 'attempt_result'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

@@ -22,3 +22,21 @@
 .col-md-12 {
   padding-top: 20px;
 }
+.option {
+  font-size: 15px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+.correct-answer {
+  border: 2px solid #04B404;
+  padding: 5px 0px 5px 0px;
+  margin: 1px;
+}
+.wrong-answer {
+  margin: 5px;
+  border: 2px solid #3d3d3d;
+  padding: 5px 0px 5px 0px;
+}
+.result-options {
+  padding: 5px;
+}

@@ -1,0 +1,12 @@
+<legend class="text-center"><h2><%= @evaluation.name %></h2></legend>
+
+<% @list.each do |ua| %>
+  <div class="well">
+    <h3><%= ua.question.question %></h3>
+    <p>
+    Correct anwers: <%= ua.question.correct_answers.pluck(:value).join(", ") %> </p>
+    <p>
+    You answered: <%= ua.at_value %>
+    </p>
+  </div>
+<% end %>
