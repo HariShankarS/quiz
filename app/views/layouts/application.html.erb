@@ -27,7 +27,7 @@
       </div>
       <div class="navbar-collapse collapse navbar-inverse-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="javascript:void(0)">Active</a></li>
+          <li class="active"><%= link_to "Evaluations",attempts_index_path %> </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
@@ -35,7 +35,7 @@
               <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <% if user_signed_in? %>
-                <li><%= link_to "Home",attempts_index_path %></li>
+                <li><%= link_to "Evaluations",attempts_index_path %></li>
                 <li><%= link_to "Account Update",edit_user_registration_path %></li>
                 <li><%= link_to "Sign Out",destroy_user_session_path, method: :delete %></li>
               <% else %>

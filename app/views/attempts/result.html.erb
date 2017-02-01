@@ -1,12 +1,24 @@
 <legend class="text-center"><h2><%= @evaluation.name %></h2></legend>
 
 <% @list.each do |ua| %>
-  <div class="well">
-    <h3><%= ua.question.question %></h3>
-    <p>
-    Correct anwers: <%= ua.question.correct_answers.pluck(:value).join(", ") %> </p>
-    <p>
-    You answered: <%= ua.at_value %>
-    </p>
+  <div class="col-md-6">
+    <div class="well">
+      <div class="list-group">
+        <div class="list-group-item">
+          <div class="row-picture">
+            <% if ua.correct? %>
+              <i class="material-icons correct">done</i>
+            <% else %>
+              <i class="material-icons">clear</i>
+            <% end -%>
+          </div>
+          <div class="row-content">
+            <h4 class="list-group-item-heading"><%= ua.question.question.capitalize %></h4>
+            <p class="list-group-item-text">Correct <%= "answer".pluralize(ua.question.correct_answers.count) %>: <%= ua.question.correct_answers.pluck(:value).join(", ") %> </p>
+            <p class="list-group-item-text"> You answered: <%= ua.at_value %> </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>

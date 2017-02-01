@@ -4,7 +4,7 @@ class UserAnswer < ActiveRecord::Base
   validates_uniqueness_of :question_id, scope: [:attempt_id]
 
   after_save :check_if_attempt_is_finished
-  after_save :result
+  after_save :add_result
 
   def check_if_attempt_is_finished
   	unless attempt.unanswered_questions.present?
@@ -12,7 +12,7 @@ class UserAnswer < ActiveRecord::Base
   	end
   end
 
-  def result
-    question.correct_answers.where(id: answer_id).count == 1
+  def add_result
+    update_column(:correct, question.correct_answers.where(id: answer_id).count == 1)
   end
 end

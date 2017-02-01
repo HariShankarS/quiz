@@ -48,6 +48,6 @@ class AttemptsController < ApplicationController
 
   private
   def user_answer_params
-    params.require(:user_answer).permit(:question_id, :answer_id)
+    params.require(:user_answer).permit(:question_id, :answer_id, :result)
   end
 end
