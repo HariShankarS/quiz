@@ -9,7 +9,7 @@
             <%= devise_error_messages! %>
 
             <div class="form-group label-floating">
-              <%= f.label :email  %><br />
+              <%= f.label :email, class: "control-label"  %><br />
               <%= f.email_field :email, autofocus: true, :class => "form-control"  %>
             </div>
             
@@ -18,21 +18,21 @@
             <% end %>
 
             <div class="form-group label-floating">
-              <%= f.label :password  %> <i>(leave blank if you don't want to change it)</i><br />
+              <%= f.label :password, class: "control-label"  %> <i class="help-block">(leave blank if you don't want to change it)</i><br />
               <%= f.password_field :password, autocomplete: "off", :class => "form-control"  %>
               <% if @minimum_password_length %>
                 <br />
-                <em><%= @minimum_password_length %> characters minimum</em>
+                <em class="help-block"><%= @minimum_password_length %> characters minimum</em>
               <% end %>
             </div>
 
             <div class="form-group label-floating">
-              <%= f.label :password_confirmation  %><br />
+              <%= f.label :password_confirmation, class: "control-label"  %><br />
               <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form-control"  %>
             </div>
 
             <div class="form-group label-floating">
-              <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+              <%= f.label :current_password, class: "control-label" %> <i class="help-block">(we need your current password to confirm your changes)</i><br />
               <%= f.password_field :current_password, autocomplete: "off", :class => "form-control"  %>
             </div>
 
