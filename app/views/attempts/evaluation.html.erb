@@ -9,11 +9,10 @@
             </h4>
             <%= form_for(@user_answer, url: evaluation_user_answer_path(attempt_id: @attempt.id, question_id: @question.id)) do |f| %>
               <div class="form-group label-floating" >
-                <%= f.label :answer_id, class: "control-label" %>
                 <% @question.options.each do |option| %>
-                  <div class="radio radio-primary">
+                  <div class="checkbox">
                     <label>
-                      <%= f.radio_button("answer_id","#{option.id}")%>
+                      <%= f.check_box :answer_id, {}, checked_value = "#{option.id}",nil %>
                       <%= option.value.capitalize %>
                     </label>
                   </div>
