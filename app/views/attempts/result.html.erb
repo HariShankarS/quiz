@@ -1,23 +1,19 @@
 <legend class="text-center"><h2><%= @evaluation.name %></h2></legend>
 
 <% @list.each do |ua| %>
-  <div class="col-md-6">
-    <div class="well">
-      <div class="list-group">
-        <div class="list-group-item">
-          <div class="row-picture">
-            <% if ua.correct? %>
-              <i class="material-icons correct">done</i>
-            <% else %>
-              <i class="material-icons">clear</i>
-            <% end -%>
-          </div>
-          <div class="row-content">
-            <h4 class="list-group-item-heading"><%= ua.question.question.capitalize %></h4>
-            <p class="list-group-item-text">Correct <%= "answer".pluralize(ua.question.correct_answers.count) %>: <%= ua.question.correct_answers.pluck(:value).join(", ") %> </p>
-            <p class="list-group-item-text"> You answered: <%= ua.at_value %> </p>
-          </div>
-        </div>
+  <div class="col-md-4 col-xs-12">
+    <div class="result well well-md well-sm clearfix">
+      <div class="col-md-2 col-md-offset-1 col-xs-4 col-xs-offset-4">
+        <% if ua.correct? %>
+          <i class="material-icons correct">done</i>
+        <% else %>
+          <i class="material-icons wrong">clear</i>
+        <% end -%>
+      </div>
+      <div class="row-content col-md-8 col-xs-12">
+        <h4 class="text-center"><%= ua.question.question.capitalize %> ?</h4>
+        <p class="text-center">Correct <%= "answer".pluralize(ua.question.correct_answers.count) %>: <%= ua.question.correct_answers.pluck(:value).join(", ") %> </p>
+        <p class="text-center"> You answered: <%= ua.at_value %> </p>
       </div>
     </div>
   </div>

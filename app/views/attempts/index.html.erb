@@ -15,7 +15,7 @@
                 <% if @user_attempted_evaluations[evaluation.id] == true %>
                   <%= link_to "Continue" , evaluation_attempt_path(evaluation_id: evaluation.id), class: "btn btn-info btn-raised", data: { no_turbolink: true } %>
                 <% else %>
-                  <button class="btn btn-raised btn-primary">Finished</button>
+                  <%= link_to "View Result" , attempt_result_path(attempt_id: evaluation.attempts.where(user_id: current_user.id).first.id), class: "btn btn-info btn-raised", data: { no_turbolink: true } %>                  
                 <% end %>
               <% end %>
             </div>
