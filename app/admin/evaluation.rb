@@ -19,6 +19,9 @@ permit_params :name, :time_per_question, :time_independent, :question_time_setti
     column :question do |evaluation|
       link_to "Add Question",new_admin_question_path(:question => {evaluation_id: evaluation.id})
     end
+    column :time_per_question
+    column :time_independent
+    column :question_time_setting
     actions
   end
   form do |f|

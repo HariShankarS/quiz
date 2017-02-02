@@ -10,7 +10,7 @@
           <i class="material-icons wrong">clear</i>
         <% end -%>
       </div>
-      <div class="row-content col-md-8 col-xs-12">
+      <div class="col-md-8 col-xs-12">
         <h4 class="text-center"><%= ua.question.question.capitalize %> ?</h4>
         <p class="text-center">Correct <%= "answer".pluralize(ua.question.correct_answers.count) %>: <%= ua.question.correct_answers.pluck(:value).join(", ") %> </p>
         <p class="text-center"> You answered: <%= ua.at_value %> </p>

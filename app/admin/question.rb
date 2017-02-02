@@ -39,8 +39,13 @@ end
 show do |ad|
    attributes_table do
      row :question
-     row :answer_id
+     row :correct_answers do |q|
+       q.correct_answers.collect(&:value).join(", ")
+     end
+     row :time
      row :evaluation_id
+     row :created_at
+     row :updated_at
    end
 end
 
