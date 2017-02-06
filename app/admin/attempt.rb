@@ -14,10 +14,11 @@ ActiveAdmin.register Attempt do
 # end
 show do |ad|
   attributes_table do
-  	row :id
+    row :id
     row :user
     row :evaluation
     row :unfinished
+    row :score
     row :created_at
     row :updated_at
   end
@@ -28,6 +29,7 @@ index do
   column :user
   column :evaluation
   column :unfinished
+  column :score
   actions
 end
 

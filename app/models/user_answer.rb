@@ -3,8 +3,7 @@ class UserAnswer < ActiveRecord::Base
   belongs_to :question
   validates_uniqueness_of :question_id, scope: [:attempt_id]
 
-  after_save :check_if_attempt_is_finished
-  after_save :add_result
+  after_save :check_if_attempt_is_finished, :add_result
 
   def check_if_attempt_is_finished
   	unless attempt.unanswered_questions.present?

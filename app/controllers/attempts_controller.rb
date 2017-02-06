@@ -24,11 +24,7 @@ class AttemptsController < ApplicationController
   def result
     @attempt = Attempt.includes(:user_answers, evaluation: :questions).find_by_id(params[:attempt_id])
     @evaluation = @attempt.evaluation
-    # @questions = @evaluation.questions
     @user_answers = @attempt.user_answers
-    # @wrong_answers = @user_answers.joins("INNER JOIN options as attempted_option on attempted_option.id = user_answers.answer_id").where(attempted_option: { valid_answer: false })
-    # @right_answers = @user_answers.joins("INNER JOIN options as attempted_option on attempted_option.id = user_answers.answer_id").where(attempted_option: { valid_answer: true })
-
     @list = @user_answers.joins("INNER JOIN options as attempted_option on attempted_option.id = user_answers.answer_id").select("user_answers.*, attempted_option.value as at_value")
   end
 
