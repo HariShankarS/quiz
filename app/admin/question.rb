@@ -16,16 +16,26 @@ after_save :notify_multiple_answers
 
 controller do
   def update
+    q = params[:question]
     update! do |format|
-      format.html { redirect_to admin_questions_path }
+      #format.html { redirect_to admin_questions_path }
+      format.html { redirect_to admin_evaluation_path(q[:evaluation_id]) }
     end
   end
   def create
+    q = params[:question]
     create! do |format|
-      format.html { redirect_to admin_questions_path }
+      format.html { redirect_to admin_evaluation_path(q[:evaluation_id]) }
     end
   end
-
+  def destroy
+    #byebug
+    q = Question.where(id: params[:id])
+    e = Evaluation.where(id: q[0].evaluation_id)
+    destroy! do |format|
+      format.html { redirect_to admin_evaluation_path(e[0].id) }
+    end
+  end
 
   def notify_multiple_answers(obj)
     t = params.require(:question).require(:options_attributes).permit!
