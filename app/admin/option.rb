@@ -13,6 +13,14 @@ controller do
       format.html { redirect_to admin_questions_path }
     end
   end
+  def destroy
+    #byebug
+    o = Option.where(id: params[:id])
+    q = Question.where(id: o[0].question_id)
+    destroy! do |format|
+      format.html { redirect_to admin_question_path(q[0].id) }
+    end
+  end
 end
 # permit_params do
 #   permitted = [:permitted, :attributes]

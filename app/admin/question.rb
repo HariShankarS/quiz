@@ -57,6 +57,21 @@ show do |ad|
      row :created_at
      row :updated_at
    end
+   panel "Options" do
+      table_for question.options do
+        column :id
+        column :value
+        column :view do |option|
+          link_to "View",admin_option_path(option.id)
+        end
+        column :edit do |option|
+          link_to "Edit",edit_admin_option_path(option.id, :method => "PATCH")
+        end
+        column :delete do |option|
+          link_to("Delete", "/admin/options/#{option.id}", :method => :delete, :data => {:confirm => "Are you sure?"})
+        end
+      end
+    end
 end
 
 
