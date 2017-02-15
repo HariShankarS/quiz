@@ -14,7 +14,6 @@ controller do
     end
   end
   def destroy
-    #byebug
     o = Option.where(id: params[:id])
     q = Question.where(id: o[0].question_id)
     destroy! do |format|
