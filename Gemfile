@@ -13,6 +13,7 @@ gem "cocoon"
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'jquery-ui-rails', '~> 5.0.5'
 gem 'jquery-turbolinks'
+gem 'masonry-rails'
 
 group :development, :test do
   gem 'byebug'
