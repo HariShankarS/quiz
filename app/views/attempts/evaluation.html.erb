@@ -5,7 +5,7 @@
         <fieldset>
           <legend class="text-center"><h2> Evaluation <%= params[:evaluation_id] %></h2></legend>
             <h4>
-              Q<%= @question.id %>) <%= @question.question.capitalize %>
+              <pre>Q) <%= @question.question %></pre>
             </h4>
             <%= form_for(@user_answer, url: evaluation_user_answer_path(attempt_id: @attempt.id, question_id: @question.id)) do |f| %>
               <div class="form-group" >
@@ -14,7 +14,7 @@
                   <div class="radio radio-primary">
                     <label>
                       <%= f.radio_button("answer_id","#{option.id}")%>
-                      <%= option.value.capitalize %>
+                      <pre><%= option.value %></pre>
                     </label>
                   </div>
                 <% end -%>
