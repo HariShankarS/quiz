@@ -25,6 +25,10 @@
               <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form-control"  %>
             </div>
 
+            <div class="form-group label-floating">
+              <%= f.label :referral_code, class: "control-label" %><br />
+              <%= f.number_field :referral_code, autofocus: true, :class => "form-control"  %>
+            </div>
             <div class="actions">
               <%= f.submit "Sign up", :class => "btn btn-raised btn-info" %>
             </div>
