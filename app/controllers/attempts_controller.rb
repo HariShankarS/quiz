@@ -10,6 +10,9 @@ class AttemptsController < ApplicationController
     end
   end
 
+  def home    
+  end
+  
   def evaluation
     @attempt = Attempt.where(user_id: current_user.id, evaluation_id: params[:evaluation_id]).first || Attempt.create(user_id: current_user.id, evaluation_id: params[:evaluation_id])
     if @attempt.unfinished?
