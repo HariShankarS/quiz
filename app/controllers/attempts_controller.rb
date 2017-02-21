@@ -1,8 +1,13 @@
 class AttemptsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
+
   def index
     @evaluations = Evaluation.all
-    @user_attempted_evaluations = current_user.attempted_evaluations
+    if current_user.present?
+      @user_attempted_evaluations = current_user.attempted_evaluations
+    else
+      @user_attempted_evaluations = {}
+    end
   end
 
   def evaluation
