@@ -48,13 +48,13 @@
       </div>
     </div>
   </nav>
-  <div class="container-fluid">
-    <div class="col-md-4 col-md-offset-4">
-      <br><%= flash_messages %>
+  <% if flash_messages.present? %>
+    <div class="container-fluid">
+      <div class="col-md-4 col-md-offset-4">
+        <br><%= flash_messages %>
+      </div>
     </div>
-  </div>
-  <div class="container-fluid">
-    <%= yield %>
-  </div>
+  <% end -%>
+  <%= yield %>
 </body>
 </html>
