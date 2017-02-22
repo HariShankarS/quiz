@@ -1,5 +1,6 @@
 class AttemptsController < ApplicationController
   before_action :authenticate_user!, except: [:home]
+  layout 'home',only: [:home]
 
   def index
     @evaluations = Evaluation.all

@@ -60,7 +60,7 @@ pre {
   font-size: 15px;
 }
 .home {
-  min-height: 600px;
+  min-height: 650px;
   background-image: url("/shs1.jpg");
     /* Background image is centered vertically and horizontally at all times */
   background-position: center center;
@@ -82,8 +82,11 @@ pre {
 }
 .intro {
   color: white;
-  margin-top: 90px;
+  margin-top: 150px;
 }
 .link-white {
   color: white !important;
+}
+.navbar-default {
+  background-color: transparent !important;
 }
