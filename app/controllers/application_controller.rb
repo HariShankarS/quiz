@@ -9,7 +9,12 @@ class ApplicationController < ActionController::Base
   # place to return to (for example, we don't want to return to the sign in page
   # after signing in), which is what the :unless prevents
   before_filter :store_current_location, :unless => :devise_controller?
+  before_filter :set_timezone
 
+
+  def set_timezone
+    Time.zone = 'Kolkata'
+  end
   protected
 
   def configure_devise_permitted_parameters

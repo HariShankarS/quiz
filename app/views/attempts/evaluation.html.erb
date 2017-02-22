@@ -4,25 +4,57 @@
       <div class="well well-md">
         <fieldset>
           <legend class="text-center"><h2> Evaluation <%= params[:evaluation_id] %></h2></legend>
-            <h4>
-              <pre>Q) <%= @question.question %></pre>
-            </h4>
-            <%= form_for(@user_answer, url: evaluation_user_answer_path(attempt_id: @attempt.id, question_id: @question.id)) do |f| %>
-              <div class="form-group" >
-                <%= f.label :answer_id, class: "control-label" %>
-                <% @question.options.each do |option| %>
-                  <div class="radio radio-primary">
-                    <label>
-                      <%= f.radio_button("answer_id","#{option.id}")%>
-                      <pre><%= option.value %></pre>
-                    </label>
-                  </div>
-                <% end -%>
+          <h4>
+            <pre>Q) <%= @question.question %></pre>
+          </h4>
+          <%= form_tag('{}') do %>
+          <div class="form-group" >
+            <%= label_tag "answer",nil, class: "control-label" %>
+            <% @question.options.each do |option| %>
+              <div class="radio radio-primary">
+                <label>
+                  <%= radio_button_tag "answer_id","#{option.id}" %>
+                  <pre><%= option.value %></pre>
+                </label>
               </div>
-              <%= f.submit "answer", class: "btn btn-raised btn-info" %>
-          <% end -%>
+            <% end %>
+          </div>
+          <%= submit_tag "answer", class: "btn btn-raised btn-info", id: "submit" %>
+          <% end %>
         </fieldset>
+        <button class="hari">hari</button>
       </div>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+
+$(document).ready(function(){
+  var start_time = Date.now()/1000;
+  $.ajax({
+    type: "POST",
+    url: '/attempts/user_answer_initialize',
+    data: { "user_answer" : { "question_id" : <%= @question.id %>, "attempt_id" : <%= @attempt.id %>, "start_time" : start_time }},
+    success: function(data){
+      var id = (data["user_answer_id"])
+      console.log(id);
+      $("form").attr("action", '/attempts/user_answer/'+id);
+    }
+  });
+  $("#submit").on('click',function(){
+    var id = $("form").attr("action")
+    var id = id.replace('/attempts/user_answer/','')
+    var end_time = Date.now()/1000;
+    console.log(id);
+    $.ajax({
+      type: "POST",
+      url: '/attempts/user_answer_add_end_time',
+      data: { "user_answer" : { "id": id, "end_time" : end_time }},
+      success: function(data){
+      var end_tme = (data["end_time"])
+      console.log(end_tme);
+      }
+    });
+  });
+});
+</script>

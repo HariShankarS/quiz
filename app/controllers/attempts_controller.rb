@@ -32,12 +32,11 @@ class AttemptsController < ApplicationController
     @list = @user_answers.joins("INNER JOIN options as attempted_option on attempted_option.id = user_answers.answer_id").select("user_answers.*, attempted_option.value as at_value")
   end
 
-  def user_answer
-    @attempt = Attempt.where(id: params[:attempt_id], unfinished: true).first
-    @user_answer = @attempt.user_answers.new(user_answer_params)
-    @user_answer.question_id = params[:question_id]
-    @user_answer.save
-
+  def user_answer_update
+    @user_answer = UserAnswer.find(params[:id])
+    @user_answer.update(user_answer_params)
+    @attempt = Attempt.find(@user_answer.attempt_id)
+    @user_answer.check_if_attempt_is_finished
     if @attempt.reload.unfinished?
       redirect_to evaluation_attempt_path(evaluation_id: @attempt.evaluation_id)
     else
@@ -46,8 +45,25 @@ class AttemptsController < ApplicationController
     end
   end
 
+  def user_answer_add_end_time
+    @user_answer = UserAnswer.find(user_answer_time_params[:id])
+    @user_answer.end_time = Time.at(user_answer_time_params[:end_time].to_i)
+    @user_answer.save
+    render json: {user_answer_id: @user_answer.end_time}.to_json
+  end
+  def user_answer_initialize
+    @attempt = Attempt.where(id: user_answer_time_params[:attempt_id], unfinished: true).first
+    @user_answer = @attempt.user_answers.new(user_answer_time_params)
+    @user_answer.start_time = Time.at(user_answer_time_params[:start_time].to_i)
+    @user_answer.save
+    render json: {user_answer_id: @user_answer.id}.to_json
+  end
   private
   def user_answer_params
-    params.require(:user_answer).permit(:question_id, :answer_id, :result)
+    params.permit(:answer_id, :result)
+  end
+
+  def user_answer_time_params
+    params.require(:user_answer).permit(:id, :question_id, :attempt_id, :start_time, :end_time)
   end
 end
