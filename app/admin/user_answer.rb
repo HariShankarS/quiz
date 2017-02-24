@@ -22,7 +22,9 @@ show do |ad|
     row :attempt
     row :start_time
     row :end_time
-    row :time_taken
+    row :time_taken do |t|
+      t.time_taken.to_s + " sec"
+    end
   end
 end
 
@@ -32,7 +34,9 @@ index do
   column :correct
   column :answer_id
   column :attempt
-  column :time_taken
+  column :time_taken do |t|
+    t.time_taken.to_s + " sec"
+  end
   actions
 end
 end

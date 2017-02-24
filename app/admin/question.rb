@@ -52,7 +52,9 @@ show do |ad|
      row :correct_answers do |q|
        q.correct_answers.collect(&:value).join(", ")
      end
-     row :time
+     row :time do |t|
+       t.time.to_s + " sec"
+     end
      row :evaluation_id
      row :created_at
      row :updated_at
@@ -93,7 +95,9 @@ end
 index do
   id_column
   column :question
-  column :time
+  column :time do |t|
+   t.time.to_s + " sec"
+  end
   column :correct_answers do |q|
     q.correct_answers.collect(&:value).join(", ")
   end
