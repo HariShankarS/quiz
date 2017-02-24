@@ -30,13 +30,13 @@ class AttemptsController < ApplicationController
 
   def result
     @attempt = Attempt.includes(:user_answers, evaluation: :questions).find_by_id(params[:attempt_id])
-    # if @attempt.user == current_user
+    if @attempt.user == current_user
       @evaluation = @attempt.evaluation
       @user_answers = @attempt.user_answers
       @list = @user_answers.joins("INNER JOIN options as attempted_option on attempted_option.id = user_answers.answer_id").select("user_answers.*, attempted_option.value as at_value")
-    # else
-    #   redirect_to attempts_index_path, :flash => { :alert => 'You are not allowed to view that page' }
-    # end
+    else
+      redirect_to attempts_index_path, :flash => { :alert => 'You are not allowed to view that page' }
+    end
   end
 
   def user_answer_update
