@@ -36,22 +36,25 @@ permit_params :name, :time_per_question, :time_independent, :question_time_setti
   end
 
   show do
-   attributes_table do
-     row :id
-     row :name
-     row :time_per_question
-     row :time_independent
-     row :question_time_setting
-     row :created_at
-     row :updated_at
-     row :question do
-      link_to "Add Question",new_admin_question_path(:question => {evaluation_id: evaluation.id})
-     end
-   end
-   panel "Questions" do
+    attributes_table do
+      row :id
+      row :name
+      row :time_per_question
+      row :time_independent
+      row :question_time_setting
+      row :created_at
+      row :updated_at
+      row :question do
+        link_to "Add Question",new_admin_question_path(:question => {evaluation_id: evaluation.id})
+      end
+    end
+    panel "Questions" do
       table_for evaluation.questions do
         column :id
         column :question
+        column :correct_answers do |q|
+          q.correct_answers.collect(&:value).join(", ")
+        end
         column :view do |question|
           link_to "View",admin_question_path(question.id)
         end

@@ -22,6 +22,19 @@ show do |ad|
     row :created_at
     row :updated_at
   end
+  panel "UserAnswers" do
+    table_for attempt.user_answers do
+      column :id
+      column :question do |q|
+        q.question.question
+      end
+      column :correct
+      column :answer_id
+      column :time_taken do |t|
+        t.time_taken.to_s + " sec"
+      end
+    end
+  end
 end
 
 index do

@@ -20,6 +20,9 @@ show do |ad|
     row :correct
     row :answer_id
     row :attempt
+    row :user do |ua|
+      ua.attempt.user.email
+    end
     row :start_time
     row :end_time
     row :time_taken do |t|
@@ -34,6 +37,9 @@ index do
   column :correct
   column :answer_id
   column :attempt
+  column :user do |ua|
+    ua.attempt.user.email
+  end
   column :time_taken do |t|
     t.time_taken.to_s + " sec"
   end
