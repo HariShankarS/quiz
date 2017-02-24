@@ -90,3 +90,13 @@ pre {
 .navbar-default {
   background-color: transparent !important;
 }
+.home-layout {
+  .navbar .navbar-nav > li >a {
+    color: #FE9A2E!important;
+  }
+}
+#timerDisplay{
+  color: #f44336;
+  text-align: right;
+  min-height: 20px;
+}

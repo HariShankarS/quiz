@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   get 'attempts/index'
-  post 'attempts/user_answer/:id' => "attempts#user_answer_update"
+  get 'attempts' => 'attempts#index'
   get 'attempts/evaluation/:evaluation_id' => 'attempts#evaluation', as: 'evaluation_attempt'
   get 'attempts/result/:attempt_id' => 'attempts#result', as: 'attempt_result'
   post 'attempts/user_answer_initialize'
-  post 'attempts/user_answer_add_end_time'
+  post 'attempts/user_answer_update'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

@@ -93,6 +93,7 @@ end
 index do
   id_column
   column :question
+  column :time
   column :correct_answers do |q|
     q.correct_answers.collect(&:value).join(", ")
   end

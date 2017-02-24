@@ -22,8 +22,20 @@
 $(document).ready(function(){
   $('[data-toggle="popover"]').popover();
   $.material.init();
+  $('#results').imagesLoaded(function() {
+    $('#results').masonry({
+      itemSelector: '.bo',
+      isFitWidth: true
+    });
+  });
 });
 $(document).on('turbolinks:load', function() {
   $('[data-toggle="popover"]').popover();
   $.material.init();
+  $('#results').imagesLoaded(function() {
+    $('#results').masonry({
+      itemSelector: '.bo',
+      isFitWidth: true
+    });
+  });
 });

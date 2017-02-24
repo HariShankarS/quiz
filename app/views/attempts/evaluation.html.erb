@@ -4,10 +4,12 @@
       <div class="well well-md">
         <fieldset>
           <legend class="text-center"><h2> Evaluation <%= params[:evaluation_id] %></h2></legend>
+          <p value="<%= @user_answer.try(:id) %>" id="userAnswerId"></p>
           <h4>
+            <p value="<%= @question.time %>" id="timerDisplay"></p>
             <pre>Q) <%= @question.question %></pre>
           </h4>
-          <%= form_tag('{}') do %>
+          <%= form_tag('', autocomplete: "off") do %>
           <div class="form-group" >
             <%= label_tag "answer",nil, class: "control-label" %>
             <% @question.options.each do |option| %>
@@ -29,29 +31,59 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-  var start_time = Date.now()/1000;
+  window.onbeforeunload = function(){
+    return 'Are you sure you want to leave?';
+  };
+  window.onhashchange = function() {
+    return 'Are you sure you want to leave?';
+  };
+
+  var start_time = Date.now(); //in sec
+  var countDownTimer = setInterval(function() {
+    var now = new Date().getTime();
+    var difference = question_end_time - now;
+    var minutes = Math.floor(( difference % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor(( difference % (1000 * 60)) / 1000);
+    // Output the result in an element with id="demo"
+    document.getElementById("timerDisplay").innerHTML = minutes + "m " + seconds + "s ";
+  
+    // If the count down is over, write some text 
+    if (difference < 0) {
+      clearInterval(countDownTimer);
+      window.onbeforeunload = undefined;
+      document.getElementById("timerDisplay").innerHTML = "EXPIRED";
+      location.reload();
+    }
+  }, 1000);
+  
+  var question_time = Number($("#timerDisplay").attr("value"))*1000; // in sec
+  var question_end_time = Number(start_time) + question_time;
+  
+  var userAnswerId = Number($("#userAnswerId").attr("value"));
   $.ajax({
     type: "POST",
     url: '/attempts/user_answer_initialize',
     data: { "user_answer" : { "question_id" : <%= @question.id %>, "attempt_id" : <%= @attempt.id %>, "start_time" : start_time }},
     success: function(data){
-      var id = (data["user_answer_id"])
-      console.log(id);
-      $("form").attr("action", '/attempts/user_answer/'+id);
+      userAnswerId = (data["user_answer_id"]);
+      $('#userAnswerId').attr("value", userAnswerId);
     }
   });
-  $("#submit").on('click',function(){
-    var id = $("form").attr("action")
-    var id = id.replace('/attempts/user_answer/','')
+
+  $("form").on('submit',function(event){
+    userAnswerId = Number($("#userAnswerId").attr("value"));
+    $("form").find("input[type=submit]").prop("disabled", "disabled");
+    event.preventDefault();
+    var answer_id = $('form input[name=answer_id]:checked').val();
     var end_time = Date.now()/1000;
-    console.log(id);
     $.ajax({
       type: "POST",
-      url: '/attempts/user_answer_add_end_time',
-      data: { "user_answer" : { "id": id, "end_time" : end_time }},
+      url: '/attempts/user_answer_update',
+      data: { "user_answer" : { "id": userAnswerId, "end_time" : end_time, answer_id: answer_id }},
       success: function(data){
-      var end_tme = (data["end_time"])
-      console.log(end_tme);
+        var end_tme = (data["end_time"])
+        window.onbeforeunload = undefined;
+        location.reload();
       }
     });
   });

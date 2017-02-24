@@ -20,8 +20,9 @@ show do |ad|
     row :correct
     row :answer_id
     row :attempt
-    row :created_at
-    row :updated_at
+    row :start_time
+    row :end_time
+    row :time_taken
   end
 end
 
@@ -31,6 +32,7 @@ index do
   column :correct
   column :answer_id
   column :attempt
+  column :time_taken
   actions
 end
 end
