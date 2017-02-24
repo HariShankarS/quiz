@@ -48,32 +48,35 @@ end
 
 show do |ad|
    attributes_table do
-     row :question
-     row :correct_answers do |q|
-       q.correct_answers.collect(&:value).join(", ")
-     end
-     row :time do |t|
-       t.time.to_s + " sec"
-     end
-     row :evaluation_id
-     row :created_at
-     row :updated_at
-   end
-   panel "Options" do
-      table_for question.options do
-        column :id
-        column :value
-        column :view do |option|
-          link_to "View",admin_option_path(option.id)
-        end
-        column :edit do |option|
-          link_to "Edit",edit_admin_option_path(option.id, :method => "PATCH")
-        end
-        column :delete do |option|
-          link_to("Delete", "/admin/options/#{option.id}", :method => :delete, :data => {:confirm => "Are you sure?"})
-        end
+    row :question
+    row :correct_answers do |q|
+     q.correct_answers.collect(&:value).join(", ")
+    end
+    row :time do |t|
+     t.time.to_s + " sec"
+    end
+    row :evaluation_id
+    row :created_at
+    row :updated_at
+    row :option do |question|
+      link_to "Add Option",new_admin_option_path(:option => {question_id: question.id})
+    end
+  end
+  panel "Options" do
+    table_for question.options do
+      column :id
+      column :value
+      column :view do |option|
+        link_to "View",admin_option_path(option.id)
+      end
+      column :edit do |option|
+        link_to "Edit",edit_admin_option_path(option.id, :method => "PATCH")
+      end
+      column :delete do |option|
+        link_to("Delete", "/admin/options/#{option.id}", :method => :delete, :data => {:confirm => "Are you sure?"})
       end
     end
+  end
 end
 
 
