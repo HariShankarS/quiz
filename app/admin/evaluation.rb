@@ -51,6 +51,7 @@ permit_params :name, :time_per_question, :time_independent, :question_time_setti
     panel "Questions" do
       table_for evaluation.questions do
         column :id
+        column :number
         column :question
         column :correct_answers do |q|
           q.correct_answers.collect(&:value).join(", ")

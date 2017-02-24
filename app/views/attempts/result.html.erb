@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-12 col-xs-12">
           <h3 class="text-center"><%= ua.time_taken  %>s</h3>
-          <h4><pre><%= ua.question.question.capitalize %></pre></h4>
+          <h4><pre><%= ua.question.number %>)&nbsp; <%= ua.question.question %></pre></h4>
           <p>Correct <%= "answer".pluralize(ua.question.correct_answers.count) %>: <pre><%= ua.question.correct_answers.pluck(:value).join(", ") %> </pre></p>
           <p> You answered: <pre><%= ua.at_value %></pre> </p>
         </div>

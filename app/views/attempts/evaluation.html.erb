@@ -7,7 +7,7 @@
           <p value="<%= @user_answer.try(:id) %>" id="userAnswerId"></p>
           <h4>
             <p value="<%= @question.time %>" id="timerDisplay"></p>
-            <pre>Q) <%= @question.question %></pre>
+            <pre><%= @question.number %> ) <%= @question.question %></pre>
           </h4>
           <%= form_tag('', autocomplete: "off") do %>
           <div class="form-group" >

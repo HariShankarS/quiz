@@ -3,7 +3,7 @@ ActiveAdmin.register Question do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :question, :evaluation_id, :time, :start_time, :end_time, options_attributes: [:id, :value, :valid_answer, :_destroy => true]
+permit_params :question, :number, :evaluation_id, :time, :start_time, :end_time, options_attributes: [:id, :value, :valid_answer, :_destroy => true]
 #
 # or
 #
@@ -47,7 +47,8 @@ controller do
 end
 
 show do |ad|
-   attributes_table do
+  attributes_table do
+    row :number
     row :question
     row :correct_answers do |q|
      q.correct_answers.collect(&:value).join(", ")
@@ -85,6 +86,7 @@ form do |f|
   f.semantic_errors *f.object.errors.keys
   f.inputs do
     f.input :evaluation_id, :as => :select, :collection => Evaluation.all.map{|t| ["#{t.name}", t.id]}
+    f.input :number, :input_html => { :style => 'width:3%'}
     f.input :question, :input_html => { :rows => 1, :style => 'width:50%'}
     f.input :time, :input_html => { :style => 'width:3%', :value => f.object.persisted? ? f.object.time : Question.set_time(params[:question].try(:[], :evaluation_id)), :disabled => Question.disable_time(params[:question].try(:[], :evaluation_id))}
     f.has_many :options, heading: 'Options', allow_destroy: true, new_record: 'Add option' do |a|
@@ -97,6 +99,7 @@ end
 
 index do
   id_column
+  column :number
   column :question
   column :time do |t|
    t.time.to_s + " sec"
