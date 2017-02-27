@@ -1,29 +1,31 @@
 <div class="container-fluid">
+  <legend class="text-center"> Evaluation <%= params[:evaluation_id] %></legend>
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <div class="well well-md">
-        <fieldset>
-          <legend class="text-center"><h2> Evaluation <%= params[:evaluation_id] %></h2></legend>
-          <p value="<%= @user_answer.try(:id) %>" id="userAnswerId"></p>
-          <h4>
-            <p value="<%= @question.time %>" id="timerDisplay"></p>
-            <pre><%= @question.number %> ) <%= @question.question %></pre>
-          </h4>
-          <%= form_tag('', autocomplete: "off") do %>
-          <div class="form-group" >
-            <%= label_tag "answer",nil, class: "control-label" %>
-            <% @question.options.each do |option| %>
-              <div class="radio radio-primary">
-                <label>
-                  <%= radio_button_tag "answer_id","#{option.id}" %>
-                  <pre><%= option.value %></pre>
-                </label>
-              </div>
-            <% end %>
-          </div>
-          <%= submit_tag "answer", class: "btn btn-raised btn-info", id: "submit" %>
+    <div class="col-md-6 col-md-offset-3 col-xs-12">
+      <div class="well well-md well-sm clearfix">
+        <p value="<%= @user_answer.try(:id) %>" id="userAnswerId"></p>
+        <p class="text-center" value="<%= @question.time %>" id="timerDisplay"></p>
+        <h4><pre><%= @question.number %> ) <%= @question.question %></pre></h4>
+        <%= form_tag('', autocomplete: "off") do %>
+        <div class="form-group" >
+          <%= label_tag "answer",nil, class: "control-label" %>
+          <% @question.options.each do |option| %>
+            <div class="radio radio-primary">
+              <label>
+                <%= radio_button_tag "answer_id","#{option.id}" %>
+                <pre><%= option.value %></pre>
+              </label>
+            </div>
           <% end %>
-        </fieldset>
+          <div class="row row-fluid">
+            <div class="workspace">
+              <p class="toggle">Workspace</p>
+              <%= text_area_tag 'body', nil,class:"text-area form-control" %>
+            </div>
+          </div>
+        </div>
+        <%= submit_tag "answer", class: "btn btn-raised btn-info", id: "submit" %>
+        <% end %>
       </div>
     </div>
   </div>

@@ -82,10 +82,10 @@ pre {
 }
 .intro {
   color: white;
-  margin-top: 150px;
+  padding-top: 150px;
 }
 .link-white {
-  color: white !important;
+  color: #FE9A2E !important;
 }
 .navbar-default {
   background-color: transparent !important;
@@ -97,6 +97,15 @@ pre {
 }
 #timerDisplay{
   color: #f44336;
-  text-align: right;
   min-height: 20px;
+}
+.toggle {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.text-area {
+  display: none;
+}
+.workspace {
+ margin: 15px;
 }

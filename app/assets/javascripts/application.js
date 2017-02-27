@@ -39,3 +39,8 @@ $(document).on('turbolinks:load', function() {
     });
   });
 });
+$(document).ready(function(){
+  $(".toggle").click(function(){
+      $(".text-area").toggle();
+  }); 
+});

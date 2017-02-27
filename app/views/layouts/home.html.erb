@@ -24,10 +24,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a class="navbar-brand" href="javascript:void(0)">Quiz</a>
       </div>
       <div class="navbar-collapse collapse navbar-inverse-collapse">
         <ul class="nav navbar-nav">
-          <li><%= link_to "Quiz",root_path, class: "navbar-brand" %></li>
+          <% if user_signed_in? %>
+            <li class="active"><%= link_to "Evaluations",attempts_index_path %> </li>
+          <% end -%>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
