@@ -49,9 +49,7 @@
   border-radius: 100%;
   color: white;
 }
-.result {
-  min-height: 150px;
-}
+
 pre {
   border: 0; 
   background-color: transparent;
@@ -84,7 +82,7 @@ pre {
   color: white;
   padding-top: 150px;
 }
-.link-white {
+.orange {
   color: #FE9A2E !important;
 }
 .navbar-default {
@@ -108,4 +106,15 @@ pre {
 }
 .workspace {
  margin: 15px;
+}
+.min {
+  height: 40px;
+}
+@media print {
+    html, body {
+       display: none;  /* hide whole page */
+    }
+}
+.container-fluid {
+  padding: 0px !important;
 }
