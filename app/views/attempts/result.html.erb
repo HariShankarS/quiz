@@ -2,7 +2,7 @@
   <legend class="text-center"><h2><%= @evaluation.name %></h2></legend>
   <h3 class="text-center">Your Score: <%= @attempt.score %></h3><br><br>
   <div id="results" class="transitions-enabled infinite-scroll clearfix">
-    <% @list.each do |ua| %>
+    <% @user_answers.each do |ua| %>
       <div class="bo col-md-4 col-xs-12">
         <div class="well well-md well-sm clearfix">
           <div class="col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-4">
@@ -17,7 +17,10 @@
             <hr>
             <p><span class="orange">Correct <%= "answer".pluralize(ua.question.correct_answers.count) %>:</span> <pre><%= ua.question.correct_answers.pluck(:value).join(", ") %> </pre></p>
             <hr>
-            <p><span class="orange">You answered:</span> <pre><%= ua.at_value %></pre> </p>
+            <p><span class="orange">You answered:</span> 
+              <% unless (ua.answer_id == 0) || (ua.answer_id.nil?)  %>
+                <pre><%= Option.find(ua.answer_id).value %></pre> </p>
+              <% end -%>
             <hr>
             <h3 class="text-center"><%= ua.time_taken  %>s</h3>
           </div>

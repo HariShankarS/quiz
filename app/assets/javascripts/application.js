@@ -42,5 +42,8 @@ $(document).on('turbolinks:load', function() {
 $(document).ready(function(){
   $(".toggle").click(function(){
       $(".text-area").toggle();
-  }); 
+  });
+  // $(window).blur(function() {
+  //   alert("You can't move to next tab while writing exam!");
+  // }); 
 });
