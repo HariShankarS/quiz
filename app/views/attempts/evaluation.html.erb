@@ -5,7 +5,7 @@
       <div class="well well-md well-sm clearfix">
         <p value="<%= @user_answer.try(:id) %>" id="userAnswerId"></p>
         <p class="text-center" value="<%= @question.time %>" id="timerDisplay"></p>
-        <h4><pre><%= @question.number %> ) <%= @question.question %></pre></h4>
+        <h4><%= @question.number %> ) <%= @question.question.html_safe %></h4>
         <%= form_tag('', autocomplete: "off") do %>
         <div class="form-group" >
           <%= label_tag "answer",nil, class: "control-label" %>
@@ -13,14 +13,14 @@
             <div class="radio radio-primary">
               <label>
                 <%= radio_button_tag "answer_id","#{option.id}" %>
-                <pre><%= option.value %></pre>
+                <pre><%= option.value.html_safe %></pre>
               </label>
             </div>
           <% end %>
           <div class="row row-fluid">
             <div class="workspace">
               <p class="toggle">Workspace</p>
-              <%= text_area_tag 'body', nil,class:"text-area form-control" %>
+              <%= text_area 'body', nil, class:"text-area form-control" %>
             </div>
           </div>
         </div>

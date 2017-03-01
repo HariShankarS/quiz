@@ -87,7 +87,7 @@ form do |f|
   f.inputs do
     f.input :evaluation_id, :as => :select, :collection => Evaluation.all.map{|t| ["#{t.name}", t.id]}
     f.input :number, :input_html => { :style => 'width:3%'}
-    f.input :question, :input_html => { :rows => 1, :style => 'width:50%'}
+    f.cktext_area :question, :input_html => { :rows => 1, :style => 'width:50%'}
     f.input :time, :input_html => { :style => 'width:3%', :value => f.object.persisted? ? f.object.time : Question.set_time(params[:question].try(:[], :evaluation_id)), :disabled => Question.disable_time(params[:question].try(:[], :evaluation_id))}
     f.has_many :options, heading: 'Options', allow_destroy: true, new_record: 'Add option' do |a|
       a.input :value, :input_html => { :style => 'width:10%', :rows => 1}

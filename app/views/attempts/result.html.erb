@@ -13,13 +13,13 @@
             <% end -%>
           </div>
           <div class="col-md-12 col-xs-12">
-            <h4><pre><%= ua.question.number %>)&nbsp; <%= ua.question.question %></pre></h4>
+            <h4><%= ua.question.number %>.<%= ua.question.question.html_safe %></h4>
             <hr>
-            <p><span class="orange">Correct <%= "answer".pluralize(ua.question.correct_answers.count) %>:</span> <pre><%= ua.question.correct_answers.pluck(:value).join(", ") %> </pre></p>
+            <p><span class="orange">Correct <%= "answer".pluralize(ua.question.correct_answers.count) %>:</span> <pre><%= ua.question.correct_answers.pluck(:value).join(", ").html_safe %> </pre></p>
             <hr>
             <p><span class="orange">You answered:</span> 
               <% unless (ua.answer_id == 0) || (ua.answer_id.nil?)  %>
-                <pre><%= Option.find(ua.answer_id).value %></pre> </p>
+                <br><br><%= Option.find(ua.answer_id).value.html_safe %></p>
               <% end -%>
             <hr>
             <h3 class="text-center"><%= ua.time_taken  %>s</h3>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   get 'attempts/index'
   get 'attempts' => 'attempts#index'
   get 'attempts/evaluation/:evaluation_id' => 'attempts#evaluation', as: 'evaluation_attempt'

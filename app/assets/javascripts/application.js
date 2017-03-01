@@ -17,11 +17,18 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require cocoon
+//= require ckeditor/init
 //= require_tree .
 
 $(document).ready(function(){
   $('[data-toggle="popover"]').popover();
   $.material.init();
+  $(".toggle").click(function(){
+      $(".text-area").toggle();
+  });
+  $('.ckeditor').each(function() {
+    CKEDITOR.replace($(this).attr('id'));
+  });
   $('#results').imagesLoaded(function() {
     $('#results').masonry({
       itemSelector: '.bo',
@@ -32,6 +39,12 @@ $(document).ready(function(){
 $(document).on('turbolinks:load', function() {
   $('[data-toggle="popover"]').popover();
   $.material.init();
+  $('.ckeditor').each(function() {
+    CKEDITOR.replace($(this).attr('id'));
+  });
+  $(".toggle").click(function(){
+      $(".text-area").toggle();
+  });
   $('#results').imagesLoaded(function() {
     $('#results').masonry({
       itemSelector: '.bo',
@@ -39,11 +52,7 @@ $(document).on('turbolinks:load', function() {
     });
   });
 });
-$(document).ready(function(){
-  $(".toggle").click(function(){
-      $(".text-area").toggle();
-  });
-  // $(window).blur(function() {
-  //   alert("You can't move to next tab while writing exam!");
-  // }); 
+
+$(".toggle").click(function(){
+  $(".text-area").toggle();
 });
