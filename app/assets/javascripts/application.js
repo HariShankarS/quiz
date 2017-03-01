@@ -53,6 +53,3 @@ $(document).on('turbolinks:load', function() {
   });
 });
 
-$(".toggle").click(function(){
-  $(".text-area").toggle();
-});

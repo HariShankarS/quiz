@@ -13,7 +13,7 @@
             <% end -%>
           </div>
           <div class="col-md-12 col-xs-12">
-            <h4><%= ua.question.number %>.<%= ua.question.question.html_safe %></h4>
+            <h4><%= ua.question.number %>.<pre><%= ua.question.question.html_safe %></pre></h4>
             <hr>
             <p><span class="orange">Correct <%= "answer".pluralize(ua.question.correct_answers.count) %>:</span> <pre><%= ua.question.correct_answers.pluck(:value).join(", ").html_safe %> </pre></p>
             <hr>
