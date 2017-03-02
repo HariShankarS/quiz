@@ -5,27 +5,32 @@
       <div class="well well-md well-sm clearfix">
         <p value="<%= @user_answer.try(:id) %>" id="userAnswerId"></p>
         <p class="text-center" value="<%= @question.time %>" id="timerDisplay"></p>
-        <h4><%= @question.number %> ) <%= @question.question.html_safe %></h4>
-        <%= form_tag('', autocomplete: "off") do %>
-        <div class="form-group" >
-          <%= label_tag "answer",nil, class: "control-label" %>
-          <% @question.options.each do |option| %>
-            <div class="radio radio-primary">
-              <label>
-                <%= radio_button_tag "answer_id","#{option.id}" %>
-                <pre><%= option.value.html_safe %></pre>
-              </label>
-            </div>
-          <% end %>
-          <div class="row row-fluid">
-            <div class="workspace">
-              <p class="toggle">Workspace</p>
-              <%= text_area 'body', nil, class:"text-area form-control" %>
+        <div class="col-md-1 col-xs-1">
+          <h4><%= @question.number %> )</h4>
+        </div>
+        <div class="col-md-11 col-xs-11">
+          <h4><%= @question.question.html_safe %></h4>
+          <%= form_tag('', autocomplete: "off") do %>
+          <div class="form-group" >
+            <%= label_tag "answer",nil, class: "control-label" %>
+            <% @question.options.each do |option| %>
+              <div class="radio radio-primary">
+                <label>
+                  <%= radio_button_tag "answer_id","#{option.id}" %>
+                  <pre><%= option.value %></pre>
+                </label>
+              </div>
+            <% end %>
+            <div class="row row-fluid">
+              <div class="workspace">
+                <p class="toggle">Workspace</p>
+                <%= text_area 'body', nil, class:"text-area form-control" %>
+              </div>
             </div>
           </div>
+          <%= submit_tag "answer", class: "btn btn-raised btn-info", id: "submit" %>
+          <% end %>
         </div>
-        <%= submit_tag "answer", class: "btn btn-raised btn-info", id: "submit" %>
-        <% end %>
       </div>
     </div>
   </div>

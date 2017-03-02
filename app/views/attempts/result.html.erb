@@ -22,7 +22,7 @@
             <hr>
             <p><span class="orange">You answered:</span> 
               <% unless (ua.answer_id == 0) || (ua.answer_id.nil?)  %>
-                <br><br><%= Option.find(ua.answer_id).value.html_safe %></p>
+                <br><br><pre><%= Option.find(ua.answer_id).value.html_safe %></pre></p>
               <% end -%>
             <hr>
             <h3 class="text-center"><%= ua.time_taken  %>s</h3>

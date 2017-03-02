@@ -49,7 +49,7 @@ end
 show do |ad|
   attributes_table do
     row :number
-    row :question
+    row :question.html_safe
     row :correct_answers do |q|
      q.correct_answers.collect(&:value).join(", ")
     end
@@ -100,7 +100,7 @@ end
 index do
   id_column
   column :number
-  column :question
+  column :question.html_safe
   column :time do |t|
    t.time.to_s + " sec"
   end
