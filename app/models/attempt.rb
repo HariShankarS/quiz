@@ -18,6 +18,14 @@ class Attempt < ActiveRecord::Base
     end  	
   end
 
+  def correct_answers_count
+    if unfinished?
+      '-'
+    else
+      "#{user_answers.where(correct: true).count}"
+    end
+  end
+
   def check_finished
     unless unanswered_questions.present?
       update_attribute(:unfinished, false)
