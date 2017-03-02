@@ -1,6 +1,9 @@
 <div class="result">
   <legend class="text-center"><h2><%= @evaluation.name %></h2></legend>
-  <h3 class="text-center">Your Score: <span class="count"><%= @attempt.correct_answers_count %></span>/<%= @user_answers.count %></h3><br><br>
+  <h4 class="text-center">Your Score: </h4>
+  <div id="score" align="center">
+    <span class="count"><%= @attempt.correct_answers_count %></span>/<%= @user_answers.count %>
+  </div><br><br>
   <div id="results" class="transitions-enabled infinite-scroll clearfix">
     <% @user_answers.each do |ua| %>
       <div class="bo col-md-4 col-xs-12">
