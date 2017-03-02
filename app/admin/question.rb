@@ -49,7 +49,7 @@ end
 show do |ad|
   attributes_table do
     row :number
-    row :question do|q|
+    row :question do |q|
       q.question.html_safe
     end
     row :correct_answers do |q|
@@ -102,7 +102,9 @@ end
 index do
   id_column
   column :number
-  column :question.html_safe
+  column :question do |q|
+    q.question.html_safe
+  end
   column :time do |t|
    t.time.to_s + " sec"
   end

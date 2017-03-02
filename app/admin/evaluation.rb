@@ -53,7 +53,7 @@ permit_params :name, :time_per_question, :time_independent, :question_time_setti
         column :id
         column :number
         column :question do |q|
-          q.question.question.html_safe
+          q.question.html_safe
         end
         column :correct_answers do |q|
           q.correct_answers.collect(&:value).join(", ")

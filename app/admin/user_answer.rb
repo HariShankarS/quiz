@@ -33,8 +33,8 @@ end
 
 index do
   id_column
-  column :question do|q|
-    q.question.html_safe
+  column :question do |q|
+    q.question.question.html_safe
   end
   column :correct
   column :answer_id
