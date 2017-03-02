@@ -49,7 +49,9 @@ end
 show do |ad|
   attributes_table do
     row :number
-    row :question.html_safe
+    row :question do|q|
+      q.question.html_safe
+    end
     row :correct_answers do |q|
      q.correct_answers.collect(&:value).join(", ")
     end

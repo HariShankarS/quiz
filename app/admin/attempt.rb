@@ -26,7 +26,7 @@ show do |ad|
     table_for attempt.user_answers do
       column :id
       column :question do |q|
-        q.question.question
+        q.question.question.html_safe
       end
       column :correct
       column :answer_id
